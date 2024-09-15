@@ -19,6 +19,7 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: 'Inter' sans-serif !important;
 }
 
 a {
@@ -41,6 +42,7 @@ h5,
 h6,
 p {
   -webkit-font-smoothing: antialiased;
+  font-family: 'Inter' sans-serif !important;
 }
 
 .login {

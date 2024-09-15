@@ -15,9 +15,7 @@ function LoginPage() {
         <main>
           <div className="login-form">
             <form action="">
-              <Heading color={'#B0B0B0'} textAlign={'center'}>
-                Kirish
-              </Heading>
+              <Heading {...css.title}>Kirish</Heading>
               <Input
                 type="number"
                 {...css.input}
@@ -71,5 +69,13 @@ const css = {
     height: '100px',
     objectFit: 'cover',
     width: '100%'
+  },
+  title: {
+    color: '#262626',
+    fontSize: '35px',
+    lineHeight: '42px',
+    fontFamily: 'Inter, sans-serif',
+    textAlign: 'center',
+    fontWeight: '700'
   }
 };

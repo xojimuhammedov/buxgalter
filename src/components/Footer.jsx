@@ -54,6 +54,7 @@ const css = {
     lineHeight: '20px',
     fontWeight: 500,
     letterSpacing: '-0.07px',
+    fontFamily: 'Inter, sans-serif',
 
     _hover: {
       textDecoration: 'none'
@@ -62,12 +63,14 @@ const css = {
   name: {
     color: '#B0B0B0',
     fontSize: '30px',
-    lineHeight: '45px'
+    lineHeight: '45px',
+    fontFamily: 'Inter, sans-serif'
   },
   link: {
     display: 'flex',
     alignItems: 'center',
     gap: '8px',
+    fontFamily: 'Inter, sans-serif',
 
     _hover: {
       textDecoration: 'none'
@@ -76,6 +79,7 @@ const css = {
   name: {
     color: '#B0B0B0',
     fontSize: '30px',
-    lineHeight: '45px'
+    lineHeight: '45px',
+      fontFamily:"Inter, sans-serif"
   }
 };

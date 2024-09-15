@@ -7,10 +7,10 @@ import { useRouter } from 'next/router';
 function Navbar() {
   const navigate = useRouter();
   return (
-    <Box>
+    <Box p={'8px 0'}>
       <Box className="container">
         <Flex justifyContent={'space-between'} alignItems={'center'}>
-          <Link {...css.link}>
+          <Link href='/' {...css.link}>
             <Heading {...css.name}>buxgalter</Heading>
             <Image src={BuxgalterProIcon} alt="BuxgalterProIcon" />
           </Link>
@@ -30,6 +30,7 @@ const css = {
     display: 'flex',
     alignItems: 'center',
     gap: '8px',
+    fontFamily: 'Inter, sans-serif',
 
     _hover: {
       textDecoration: 'none'
@@ -38,7 +39,8 @@ const css = {
   name: {
     color: '#B0B0B0',
     fontSize: '30px',
-    lineHeight: '45px'
+    lineHeight: '45px',
+    fontFamily: 'Inter, sans-serif'
   },
   button: {
     borderRadius: 'var(--radius-lg, 10px)',
