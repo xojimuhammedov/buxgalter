@@ -52,6 +52,7 @@ const css = {
     position: 'relative',
     height: '180px',
     transition: 'all 0.3s',
+    cursor: 'pointer',
 
     _hover: {
       border: '1px solid #D34D4D'

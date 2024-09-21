@@ -9,6 +9,11 @@ body {
   overflow-x: hidden;
 }
 
+.main {
+  height: calc(100vh - 70px - 94px);
+  overflow: scroll;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -82,5 +87,73 @@ p {
 }
 
 .btn-primary:focus {
-  box-shadow: 0px 1px 2px 0px rgba(20, 21, 26, 0.05);
+  box-shadow: 0px 0px 0px 2px rgba(200, 178, 255, 0.5);
+  background: #14151a;
+  border: 1px solid var(--border-action-focus-light, #b78af0);
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+}
+.profile-label {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.setup-img-upload {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 220px;
+}
+.setup-img-default {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+}
+
+.setup-img-default > img,
+.setup-img-upload > img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.setup-img-default > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  color: gray;
+}
+
+.setup-img-upload > input {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #14151a;
+}
+
+a:hover {
+  text-decoration: none !important;
 }

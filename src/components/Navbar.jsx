@@ -10,10 +10,21 @@ function Navbar() {
     <Box p={'8px 0'}>
       <Box className="container">
         <Flex justifyContent={'space-between'} alignItems={'center'}>
-          <Link href='/' {...css.link}>
-            <Heading {...css.name}>buxgalter</Heading>
-            <Image src={BuxgalterProIcon} alt="BuxgalterProIcon" />
-          </Link>
+          <Flex alignItems={'center'}>
+            <Link href="/" {...css.link}>
+              <Heading {...css.name}>buxgalter</Heading>
+              <Image src={BuxgalterProIcon} alt="BuxgalterProIcon" />
+            </Link>
+            <Link {...css.links} href="/">
+              Bosh sahifa
+            </Link>
+            <Link {...css.links} href="/">
+              Xizmatlarimiz
+            </Link>
+            <Link {...css.links} href="/">
+              Bog`lanish
+            </Link>
+          </Flex>
           <Button onClick={() => navigate.push('/login')} {...css.button}>
             Login
           </Button>
@@ -51,7 +62,7 @@ const css = {
     fontWeight: 400,
     letterSpacing: '-0.07px',
     color: '#fff',
-    padding: 'var(--spacing-6, 6px) var(--spacing-10, 10px)',
+    padding: 'var(--spacing-6, 8px) var(--spacing-10, 14px)',
     transition: '0.3s all ease-in-out',
     cursor: 'pointer',
     height: 'auto',
@@ -62,6 +73,18 @@ const css = {
       border: '1px solid var(--border-action-focus-light, #B78AF0)',
       background: '#14151A',
       boxShadow: '0px 0px 0px 2px rgba(200, 178, 255, 0.50)'
+    }
+  },
+  links: {
+    fontSize: '14px',
+    lineHeight: '20px',
+    fontWeight: '500',
+    color: '#a1a1a3',
+    fontFamily: 'Inter, sans-serif',
+    padding: '0 16px',
+
+    _hover: {
+      textDecoration: 'none'
     }
   }
 };
