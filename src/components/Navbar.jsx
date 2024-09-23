@@ -1,5 +1,4 @@
-import { Box, Button, Flex, Heading, Link } from '@chakra-ui/react';
-import Image from 'next/image';
+import { Box, Button, Flex, Heading, Link, Image } from '@chakra-ui/react';
 import React from 'react';
 import BuxgalterProIcon from '@/assets/pro.svg';
 import { useRouter } from 'next/router';
@@ -13,7 +12,7 @@ function Navbar() {
           <Flex alignItems={'center'}>
             <Link href="/" {...css.link}>
               <Heading {...css.name}>buxgalter</Heading>
-              <Image src={BuxgalterProIcon} alt="BuxgalterProIcon" />
+              <Image src={BuxgalterProIcon.src} alt="BuxgalterProIcon" />
             </Link>
             <Link {...css.links} href="/">
               Bosh sahifa

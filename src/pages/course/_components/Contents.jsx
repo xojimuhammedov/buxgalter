@@ -4,11 +4,11 @@ import React from 'react';
 function Contents() {
   return (
     <Box p={'24px 0'}>
-      <Heading {...css.title}>Mundarija</Heading>
+      <Heading {...css.title}>Darslar ro`yhati</Heading>
       <Box {...css.box}>
         <Flex align={'center'} justifyContent={'space-between'}>
           <Heading {...css.name}>Бухгалтерия ҳисоби мавзу 2</Heading>
-          <Link {...css.link}>Batafsil</Link>
+          <Link href='/lesson/1' {...css.link}>Batafsil</Link>
         </Flex>
       </Box>
     </Box>

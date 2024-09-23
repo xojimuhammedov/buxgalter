@@ -76,10 +76,4 @@ const css = {
       textDecoration: 'none'
     }
   },
-  name: {
-    color: '#B0B0B0',
-    fontSize: '30px',
-    lineHeight: '45px',
-    fontFamily: 'Inter, sans-serif'
-  }
 };
