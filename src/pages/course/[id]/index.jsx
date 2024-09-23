@@ -2,11 +2,28 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import Head from 'next/head';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import OneIcon from '@/assets/1.svg';
 import Contents from '../_components/Contents';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
 function CourseAbout() {
+  const router = useRouter().query;
+  const [course, setCourse] = useState();
+
+  useEffect(() => {
+    axios
+      .get('http://jimi.sigmaservis.uz/api/courses/main')
+      .then((response) =>
+        setCourse(response?.data?.data?.find((item) => item?.course_id === router?.id))
+      )
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [router?.id]);
+
+  console.log(course);
   return (
     <>
       <Head>
@@ -22,22 +39,19 @@ function CourseAbout() {
         <Box p={'36px 0'}>
           <Box className="container">
             <Flex {...css.box}>
-              <Heading {...css.name}>Бухгалтерия ҳисоби буйича дарслар</Heading>
+              <Heading {...css.name}>{course.name}</Heading>
               <Image src={OneIcon.src} alt="OneIcon" />
             </Flex>
 
             <Box {...css.bottom}>
-              <Heading {...css.title}>Бухгалтерия ҳисоби буйича дарслар</Heading>
-              <Text {...css.text}>
-                Endi sizda buning uchun ajoyib imkoniyat bor. Al-Muamalat Education tomonidan taqdim
-                etilgan Islom moliyasi savodxonligi kursi boshlanmoqda. Ushbu kursda quyidagi asosiy
-                mavzular o`rganiladi: -Islom moliyasi nima: Islom moliyasining asosiy tushunchalari
-                va qoidalari -Shartnomalar: Ularning turlari va qanday qo‘llanilishi -Takaful nima
-                ekanligini va uning qanday ishlashi -Sukuk turlari va ularning moliyaviy
-                mexanizmlari -Zakot hisoblash va kimlarga berilishi.
-              </Text>
+              <Heading {...css.title}>{course.name}</Heading>
+              <Text
+                {...css.text}
+                dangerouslySetInnerHTML={{
+                  __html: course.description
+                }}
+              />
             </Box>
-
             <Contents />
           </Box>
         </Box>
