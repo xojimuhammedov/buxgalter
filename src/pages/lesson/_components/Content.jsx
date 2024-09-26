@@ -1,12 +1,17 @@
 import { Box, Flex, Heading, Link } from '@chakra-ui/react';
 import React from 'react';
 
-function Contents() {
+function Contents({ course }) {
   return (
     <Box p={'24px 0'}>
       <Heading {...css.title}>Mundarija</Heading>
       <Box {...css.box}>
-        <Heading {...css.name}>Бухгалтерия ҳисоби мавзу 2</Heading>
+        <Heading
+          {...css.name}
+          dangerouslySetInnerHTML={{
+            __html: course?.contentplan
+          }}
+        />
       </Box>
     </Box>
   );

@@ -2,11 +2,26 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { Box, Flex, Heading, Image, Link, Text } from '@chakra-ui/react';
 import Head from 'next/head';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import OneIcon from '@/assets/1.svg';
 import Contents from '../_components/Content';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
 function CourseAbout() {
+  const router = useRouter().query;
+  const [course, setCourse] = useState();
+
+  useEffect(() => {
+    axios
+      .get('http://jimi.sigmaservis.uz/api/lessons')
+      .then((response) => {
+        setCourse(response?.data?.data?.find((item) => item?.id === router?.id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [router?.id]);
   return (
     <>
       <Head>
@@ -22,21 +37,19 @@ function CourseAbout() {
         <Box p={'24px 0'}>
           <Box className="container">
             <Flex {...css.box}>
-              <Heading {...css.name}>Бухгалтерия ҳисоби буйича дарслар</Heading>
+              <Heading {...css.name}>{course?.title}</Heading>
               <Image src={OneIcon.src} alt="OneIcon" />
             </Flex>
-            <Contents />
+            <Contents course={course} />
             <Box {...css.bottom}>
-              <Text {...css.text}>
-                Endi sizda buning uchun ajoyib imkoniyat bor. Al-Muamalat Education tomonidan taqdim
-                etilgan Islom moliyasi savodxonligi kursi boshlanmoqda. Ushbu kursda quyidagi asosiy
-                mavzular o`rganiladi: -Islom moliyasi nima: Islom moliyasining asosiy tushunchalari
-                va qoidalari -Shartnomalar: Ularning turlari va qanday qo‘llanilishi -Takaful nima
-                ekanligini va uning qanday ishlashi -Sukuk turlari va ularning moliyaviy
-                mexanizmlari -Zakot hisoblash va kimlarga berilishi.
-              </Text>
+              <Text
+                {...css.text}
+                dangerouslySetInnerHTML={{
+                  __html: course?.body
+                }}
+              />
             </Box>
-            <Flex justifyContent={'center'} mt={"24px"} >
+            <Flex justifyContent={'center'} mt={'24px'}>
               <Link {...css.link}>Sotib olish</Link>
             </Flex>
           </Box>

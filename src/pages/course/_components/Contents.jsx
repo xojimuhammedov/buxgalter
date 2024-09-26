@@ -1,15 +1,32 @@
 import { Box, Flex, Heading, Link } from '@chakra-ui/react';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
-function Contents() {
+function Contents({ courseId }) {
+  const [lesson, setLesson] = useState();
+
+  useEffect(() => {
+    axios
+      .get(`http://jimi.sigmaservis.uz/api/lessons?course_id=${courseId}`)
+      .then((response) => setLesson(response?.data?.data))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [courseId]);
+
+
   return (
     <Box p={'24px 0'}>
       <Heading {...css.title}>Darslar ro`yhati</Heading>
       <Box {...css.box}>
-        <Flex align={'center'} justifyContent={'space-between'}>
-          <Heading {...css.name}>Бухгалтерия ҳисоби мавзу 2</Heading>
-          <Link href='/lesson/1' {...css.link}>Batafsil</Link>
-        </Flex>
+        {lesson.map((item, index) => (
+          <Flex key={index} align={'center'} justifyContent={'space-between'}>
+            <Heading {...css.name}>{item?.title}</Heading>
+            <Link href={`/lesson/${item?.id}`} {...css.link}>
+              Batafsil
+            </Link>
+          </Flex>
+        ))}
       </Box>
     </Box>
   );
@@ -54,7 +71,7 @@ const css = {
     _hover: {
       background: '#fff',
       color: '#14151A',
-      border: '2px solid var(--border-action-focus-light, #B78AF0)',
+      border: '2px solid var(--border-action-focus-light, #B78AF0)'
     },
     _focus: {
       border: '1px solid var(--border-action-focus-light, #B78AF0)',

@@ -23,7 +23,6 @@ function CourseAbout() {
       });
   }, [router?.id]);
 
-  console.log(course);
   return (
     <>
       <Head>
@@ -39,20 +38,20 @@ function CourseAbout() {
         <Box p={'36px 0'}>
           <Box className="container">
             <Flex {...css.box}>
-              <Heading {...css.name}>{course.name}</Heading>
+              <Heading {...css.name}>{course?.name}</Heading>
               <Image src={OneIcon.src} alt="OneIcon" />
             </Flex>
 
             <Box {...css.bottom}>
-              <Heading {...css.title}>{course.name}</Heading>
+              <Heading {...css.title}>{course?.name}</Heading>
               <Text
                 {...css.text}
                 dangerouslySetInnerHTML={{
-                  __html: course.description
+                  __html: course?.description
                 }}
               />
             </Box>
-            <Contents />
+            <Contents courseId={router?.id} />
           </Box>
         </Box>
       </main>
