@@ -1,21 +1,79 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Box, Button, Flex, Input, Text } from '@chakra-ui/react';
 import { LogOut, UserRound } from 'lucide-react';
 import { get } from 'lodash';
 import Image from 'next/image';
+import { useMutation, useQuery } from 'react-query';
+import { API, API_URL } from '@/api';
 
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
 function ProfileAbout() {
   const [image, setImage] = useState(null);
+  const removeClick = () => {
+    localStorage.removeItem('courseToken');
+  };
+
+  const { data, refetch } = useQuery('userMe', async () => {
+    return await API.userMe().catch((err) => {
+      console.log(err);
+    });
+  });
+
+  const { handleSubmit, register, reset } = useForm({
+    defaultValues: useMemo(() => {
+      return {
+        full_name: get(data, 'data.data.full_name'),
+        // password: get(data, "data.data.password"),
+        phone_number: get(data, 'data.data.phone_number')
+      };
+    }, [data]),
+    mode: 'onChange'
+  });
+
+  useEffect(() => {
+    reset({
+      full_name: get(data, 'data.data.full_name'),
+      phone_number: get(data, 'data.data.phone_number')
+    });
+  }, [data]);
+
+  const { mutate } = useMutation(async (payload) => {
+    return await axios
+      .put(`${API_URL}/users/${get(data, 'data.data.user_id')}`, payload, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('courseToken')}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      .then((res) => {
+        console.log(res);
+        refetch();
+        toast.success('Profile updated successfully');
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error('Profile update failed');
+      });
+  });
+  const onSubmit = (value) => {
+    const submitData = {
+      images: image,
+      ...value
+    };
+    mutate(submitData);
+  };
 
   return (
     <Box p={'24px 0'} width={'100%'}>
-      <form className="profile-form" action="">
+      <form onSubmit={handleSubmit(onSubmit)} className="profile-form" action="">
         <label htmlFor="setup-profile-img" className="setup-img-upload">
           {image ? (
-            <Image src={!!image && URL?.createObjectURL(image)} alt="error" />
+            <img src={!!image && URL?.createObjectURL(image)} alt="" />
           ) : (
             <div className="setup-img-default">
-              {/* <img src={get(data, 'data.data.images')} /> */}
+              <img src={get(data, 'data.data.images')} alt="" />
               <UserRound color="gray" />
             </div>
           )}
@@ -24,7 +82,7 @@ function ProfileAbout() {
             // {...register("images")}
             type="file"
             id="setup-profile-img"
-            accept="image/*"
+             accept="image/*"
             onChange={(e) => {
               setImage(e.target.files[0]);
             }}
@@ -32,38 +90,42 @@ function ProfileAbout() {
           <span style={{ color: '#14151A', fontWeight: '400' }}>Image Upload</span>
         </label>
         <label className="profile-label" htmlFor="full_name">
-          Ismingizni kiriting
+          F.I.O kiriting
         </label>
         <Input
           id="full_name"
+          {...register('full_name')}
           {...css.input}
           type="name"
           autoComplete="off"
           placeholder="Full Name"
         />
         <label className="profile-label" htmlFor="address">
-          Address kiriting
+          Manzilingizni kiriting
         </label>
         <Input
           id="address"
           {...css.input}
+          {...register('address')}
           autoComplete="new-address"
           type="address"
           placeholder="Address"
         />
-        <label className="profile-label" htmlFor="password">
-          Password kiriting
-        </label>
-        <Input {...css.input} autoComplete="new-password" type="password" placeholder="Password" />
         <label className="profile-label" htmlFor="phone_number">
           Sizning raqamingiz
         </label>
-        <Input {...css.input} type="number" id="phone_number" placeholder="Sizning raqamingiz" />
+        <Input
+          {...register('phone_number')}
+          {...css.input}
+          type="number"
+          id="phone_number"
+          placeholder="Sizning raqamingiz"
+        />
         <Flex align={'center'} gap={{ base: '24px', md: '36px' }} mt={'20px'}>
           <Button {...css.button} type="submit">
             Yangilash
           </Button>
-          <Flex cursor={'pointer'} align={'center'} gap={'10px'}>
+          <Flex onClick={removeClick} cursor={'pointer'} align={'center'} gap={'10px'}>
             <LogOut color="#fe5d37" />
             <Text {...css.name}>Profildan chiqish</Text>
           </Flex>

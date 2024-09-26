@@ -1,18 +1,30 @@
 import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import ProfileIcon from '@/assets/avatar1.jpg';
+import { get } from "lodash";
+import { API, API_URL } from '@/api';
+import { useQuery } from 'react-query';
 
 function Main() {
+  const { data } = useQuery('userMe', async () => {
+    return await API.userMe().catch((err) => {
+      console.log(err);
+    });
+  });
+
+  const profileImage = get(data, 'data.data.image_src')
+    ? `${API_URL}/uploads/images/${get(data, 'data.data.image_src')}`
+    : ProfileIcon.src;
   return (
     <Box p={'48px 0'}>
       <Box className="container">
         <Flex {...css.list}>
-          <Image {...css.image} src={ProfileIcon.src} alt="ProfileIcon" />
+          <Image {...css.image} src={profileImage} alt="ProfileIcon" />
           <Box mt={{ base: '0', md: '35px' }}>
             <Heading {...css.title} size={'h5'}>
-              Muhammadislom
+            {get(data, "data.data.full_name")}
             </Heading>
-            <Text {...css.number}>+998901693527</Text>
+            <Text {...css.number}>+{get(data, "data.data.phone_number")}</Text>
           </Box>
         </Flex>
       </Box>
@@ -31,7 +43,7 @@ const css = {
       base: '80px',
       md: '120px'
     },
-    gap:"24px"
+    gap: '24px'
   },
   title: {
     color: '#14151A',

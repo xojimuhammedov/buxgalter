@@ -3,8 +3,37 @@ import React from 'react';
 import { Button, Heading, Input, Link } from '@chakra-ui/react';
 import BuxgalterProIcon from '@/assets/pro.svg';
 import Image from 'next/image';
+import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import { API } from '@/api';
+import { useMutation } from 'react-query';
+import { useRouter } from 'next/router';
 
 function LoginPage() {
+  const navigate = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+  const { mutate } = useMutation(async (payload) => {
+    return await API.loginUser(payload)
+      .then((res) => {
+        if (res?.data?.success) {
+          navigate.push('/profile')
+          toast.success('Siz muvaffaqiyatli login qildingiz!');
+        }
+        localStorage.setItem('courseToken', `${res?.data?.data?.tokens?.accessToken}`);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error('Telefon nomer yoki parolni xato kiritdingiz!');
+      });
+  });
+  const onSubmit = (data) => {
+    mutate(data);
+  };
   return (
     <>
       <Head>
@@ -21,10 +50,13 @@ function LoginPage() {
               <Heading {...css.name}>buxgalter</Heading>
               <Image src={BuxgalterProIcon} alt="BuxgalterProIcon" />
             </Link>
-            <form action="">
+            <form onSubmit={handleSubmit(onSubmit)} action="">
               <Input
                 type="number"
                 {...css.input}
+                {...register('phone_number', {
+                  required: true
+                })}
                 autoComplete="off"
                 required
                 placeholder="Sizning raqamingiz"
@@ -32,6 +64,9 @@ function LoginPage() {
               <Input
                 {...css.input}
                 type="password"
+                {...register('password', {
+                  required: true
+                })}
                 required
                 autoComplete="new-password"
                 placeholder="Password"

@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Image, Spinner, Text } from '@chakra-ui/react';
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import OneIcon from '@/assets/1.svg';
@@ -11,6 +11,7 @@ import axios from 'axios';
 function CourseAbout() {
   const router = useRouter().query;
   const [course, setCourse] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -20,6 +21,9 @@ function CourseAbout() {
       )
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [router?.id]);
 
@@ -36,23 +40,35 @@ function CourseAbout() {
       </nav>
       <main className="main">
         <Box p={'36px 0'}>
-          <Box className="container">
-            <Flex {...css.box}>
-              <Heading {...css.name}>{course?.name}</Heading>
-              <Image src={OneIcon.src} alt="OneIcon" />
-            </Flex>
-
-            <Box {...css.bottom}>
-              <Heading {...css.title}>{course?.name}</Heading>
-              <Text
-                {...css.text}
-                dangerouslySetInnerHTML={{
-                  __html: course?.description
-                }}
+          {isLoading ? (
+            <Flex mt={'24px'} align={'center'} justifyContent={'center'}>
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
               />
+            </Flex>
+          ) : (
+            <Box className="container">
+              <Flex {...css.box}>
+                <Heading {...css.name}>{course?.name}</Heading>
+                <Image src={OneIcon.src} alt="OneIcon" />
+              </Flex>
+
+              <Box {...css.bottom}>
+                <Heading {...css.title}>{course?.name}</Heading>
+                <Text
+                  {...css.text}
+                  dangerouslySetInnerHTML={{
+                    __html: course?.description
+                  }}
+                />
+              </Box>
+              <Contents courseId={router?.id} />
             </Box>
-            <Contents courseId={router?.id} />
-          </Box>
+          )}
         </Box>
       </main>
       <footer>

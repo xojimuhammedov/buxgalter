@@ -1,9 +1,10 @@
-import { Box, Flex, Heading, Link } from '@chakra-ui/react';
+import { Box, Flex, Heading, Link, Spinner } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 function Contents({ courseId }) {
   const [lesson, setLesson] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -11,23 +12,31 @@ function Contents({ courseId }) {
       .then((response) => setLesson(response?.data?.data))
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [courseId]);
-
 
   return (
     <Box p={'24px 0'}>
       <Heading {...css.title}>Darslar ro`yhati</Heading>
-      <Box {...css.box}>
-        {lesson.map((item, index) => (
-          <Flex key={index} align={'center'} justifyContent={'space-between'}>
-            <Heading {...css.name}>{item?.title}</Heading>
-            <Link href={`/lesson/${item?.id}`} {...css.link}>
-              Batafsil
-            </Link>
-          </Flex>
-        ))}
-      </Box>
+      {isLoading ? (
+        <Flex mt={'24px'} align={'center'} justifyContent={'center'}>
+          <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
+        </Flex>
+      ) : (
+        <Box {...css.box}>
+          {lesson?.map((item, index) => (
+            <Flex key={index} align={'center'} justifyContent={'space-between'}>
+              <Heading {...css.name}>{item?.title}</Heading>
+              <Link href={`/lesson/${item?.id}`} {...css.link}>
+                Batafsil
+              </Link>
+            </Flex>
+          ))}
+        </Box>
+      )}
     </Box>
   );
 }

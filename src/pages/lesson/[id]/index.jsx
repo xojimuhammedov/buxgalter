@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import { Box, Flex, Heading, Image, Link, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Image, Link, Spinner, Text } from '@chakra-ui/react';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 import OneIcon from '@/assets/1.svg';
@@ -11,6 +11,7 @@ import axios from 'axios';
 function CourseAbout() {
   const router = useRouter().query;
   const [course, setCourse] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -20,6 +21,9 @@ function CourseAbout() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [router?.id]);
   return (
@@ -35,24 +39,36 @@ function CourseAbout() {
       </nav>
       <main className="main">
         <Box p={'24px 0'}>
-          <Box className="container">
-            <Flex {...css.box}>
-              <Heading {...css.name}>{course?.title}</Heading>
-              <Image src={OneIcon.src} alt="OneIcon" />
-            </Flex>
-            <Contents course={course} />
-            <Box {...css.bottom}>
-              <Text
-                {...css.text}
-                dangerouslySetInnerHTML={{
-                  __html: course?.body
-                }}
+          {isLoading ? (
+            <Flex mt={'24px'} align={'center'} justifyContent={'center'}>
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
               />
-            </Box>
-            <Flex justifyContent={'center'} mt={'24px'}>
-              <Link {...css.link}>Sotib olish</Link>
             </Flex>
-          </Box>
+          ) : (
+            <Box className="container">
+              <Flex {...css.box}>
+                <Heading {...css.name}>{course?.title}</Heading>
+                <Image src={OneIcon.src} alt="OneIcon" />
+              </Flex>
+              <Contents course={course} />
+              <Box {...css.bottom}>
+                <Text
+                  {...css.text}
+                  dangerouslySetInnerHTML={{
+                    __html: course?.body
+                  }}
+                />
+              </Box>
+              <Flex justifyContent={'center'} mt={'24px'}>
+                <Link {...css.link}>Sotib olish</Link>
+              </Flex>
+            </Box>
+          )}
         </Box>
       </main>
       <footer>
