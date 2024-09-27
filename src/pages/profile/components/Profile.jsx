@@ -25,8 +25,8 @@ function ProfileAbout() {
     defaultValues: useMemo(() => {
       return {
         full_name: get(data, 'data.data.full_name'),
-        // password: get(data, "data.data.password"),
-        phone_number: get(data, 'data.data.phone_number')
+        phone_number: get(data, 'data.data.phone_number'),
+        address: get(data, 'data.data.address')
       };
     }, [data]),
     mode: 'onChange'
@@ -35,7 +35,8 @@ function ProfileAbout() {
   useEffect(() => {
     reset({
       full_name: get(data, 'data.data.full_name'),
-      phone_number: get(data, 'data.data.phone_number')
+      phone_number: get(data, 'data.data.phone_number'),
+      address: get(data, 'data.data.address')
     });
   }, [data]);
 
@@ -82,7 +83,7 @@ function ProfileAbout() {
             // {...register("images")}
             type="file"
             id="setup-profile-img"
-             accept="image/*"
+            accept="image/*"
             onChange={(e) => {
               setImage(e.target.files[0]);
             }}

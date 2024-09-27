@@ -6,7 +6,7 @@ function Services() {
     <Box p={'35px 0'}>
       <Box className="container">
         <Heading {...css.title}>Bizning Xizmatlarimiz</Heading>
-        <SimpleGrid columns={2} gap={'16px'}>
+        <SimpleGrid columns={{base:1, sm:2}} gap={'16px'}>
           <Box {...css.item}>
             <Text {...css.text}>
               <b>Оутсорсинг</b> - сифатли бухгалтерия хизматлари. Кучли команда - аниқ ҳисоб гарови.

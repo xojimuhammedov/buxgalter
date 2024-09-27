@@ -3,12 +3,22 @@ import React from "react";
 import BuxgalterProIcon from "@/assets/pro.svg";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useQuery } from "react-query";
+import { API } from "@/api";
+import { get } from "lodash";
 
 function Navbar() {
   const navigate = useRouter();
-  // const userId = localStorage.getItem("courseToken");
-  // const routeName = userId ? "/profile" : "/login";
-  // const subName = userId ? "Profile" : "Login";
+
+  const { data } = useQuery("userMe", async () => {
+    return await API.userMe().catch((err) => {
+      console.log(err);
+    });
+  });
+
+  const routeName = get(data, "data.success") ? "/profile" : "/login";
+  const subName = get(data, "data.success") ? "Profile" : "Login";
+
   return (
     <Box p={"8px 0"}>
       <Box className="container">
@@ -30,8 +40,8 @@ function Navbar() {
               <Text {...css.links}>Bog`lanish</Text>
             </Link>
           </Flex>
-          <Button onClick={() => navigate.push('/login')} {...css.button}>
-            Login
+          <Button onClick={() => navigate.push(routeName)} {...css.button}>
+            {subName}
           </Button>
         </Flex>
       </Box>
@@ -53,7 +63,10 @@ const css = {
   },
   name: {
     color: "#B0B0B0",
-    fontSize: "30px",
+    fontSize: {
+      base: "25px",
+      md: "30px",
+    },
     lineHeight: "45px",
     fontFamily: "Inter, sans-serif",
   },
@@ -86,6 +99,10 @@ const css = {
     color: "#a1a1a3",
     fontFamily: "Inter, sans-serif",
     padding: "0 16px",
+    display: {
+      base: "none",
+      md: "block",
+    },
 
     _hover: {
       textDecoration: "none",
