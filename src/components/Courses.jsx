@@ -10,7 +10,7 @@ function Courses() {
 
   useEffect(() => {
     axios
-      .get("http://jimi.sigmaservis.uz/api/courses/main")
+      .get("https://api.buxgalterpro.uz/api/courses/main")
       .then((res) => setCourse(res.data.data))
       .catch((err) => console.log(err));
   }, []);

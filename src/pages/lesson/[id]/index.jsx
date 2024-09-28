@@ -15,7 +15,7 @@ function CourseAbout() {
 
   useEffect(() => {
     axios
-      .get('http://jimi.sigmaservis.uz/api/lessons')
+      .get('https://api.buxgalterpro.uz/api/lessons')
       .then((response) => {
         setCourse(response?.data?.data?.find((item) => item?.id === router?.id));
       })

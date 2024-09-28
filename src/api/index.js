@@ -1,6 +1,6 @@
 import axios from 'axios';
-const API_BASE_URL = 'http://jimi.sigmaservis.uz/api';
-export const API_URL = 'http://jimi.sigmaservis.uz/api';
+const API_BASE_URL = 'https://api.buxgalterpro.uz/api';
+export const API_URL = 'https://api.buxgalterpro.uz/api';
 
 const axiosInstance = axios;
 axiosInstance.defaults.baseURL = API_BASE_URL;

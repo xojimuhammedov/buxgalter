@@ -8,7 +8,7 @@ function Contents({ courseId }) {
 
   useEffect(() => {
     axios
-      .get(`http://jimi.sigmaservis.uz/api/lessons?course_id=${courseId}`)
+      .get(`https://api.buxgalterpro.uz/api/lessons?course_id=${courseId}`)
       .then((response) => setLesson(response?.data?.data))
       .catch((err) => {
         console.log(err);
