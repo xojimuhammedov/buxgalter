@@ -45,7 +45,7 @@ function LoginPage() {
       <div className="login">
         <main>
           <div className="login-form">
-            <Heading {...css.title}>Kirish</Heading>
+            <Heading {...css.title}>Кириш</Heading>
             <Link href="/" {...css.link}>
               <Heading {...css.name}>buxgalter</Heading>
               <Image src={BuxgalterProIcon} alt="BuxgalterProIcon" />
@@ -59,7 +59,7 @@ function LoginPage() {
                 })}
                 autoComplete="off"
                 required
-                placeholder="Sizning raqamingiz"
+                placeholder=" Сизнинг рақамингиз"
               />
               <Input
                 {...css.input}
@@ -69,10 +69,10 @@ function LoginPage() {
                 })}
                 required
                 autoComplete="new-password"
-                placeholder="Password"
+                placeholder="Пассворд"
               />
               <Button mt={'25px'} className="btn btn-primary" type="submit">
-                Yuborish
+              Юбориш
               </Button>
             </form>
           </div>

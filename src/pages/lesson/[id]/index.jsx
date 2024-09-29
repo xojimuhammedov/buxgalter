@@ -65,7 +65,7 @@ function CourseAbout() {
                 />
               </Box>
               <Flex justifyContent={'center'} mt={'24px'}>
-                <Link {...css.link}>Sotib olish</Link>
+                <Link {...css.link}>Сотиб олиш</Link>
               </Flex>
             </Box>
           )}

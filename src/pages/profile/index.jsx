@@ -24,8 +24,8 @@ function Profile() {
         <Box className="container">
           <Tabs>
             <TabList>
-              <Tab>Profile</Tab>
-              <Tab>Kurslar</Tab>
+              <Tab>Профиле</Tab>
+              <Tab>Курслар</Tab>
             </TabList>
             <TabPanels>
               <TabPanel p={'0'}>

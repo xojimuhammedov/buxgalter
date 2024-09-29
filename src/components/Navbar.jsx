@@ -17,7 +17,7 @@ function Navbar() {
   });
 
   const routeName = get(data, "data.success") ? "/profile" : "/login";
-  const subName = get(data, "data.success") ? "Profile" : "Login";
+  const subName = get(data, "data.success") ? "Профиле" : "Логин";
 
   return (
     <Box p={"8px 0"}>
@@ -31,13 +31,13 @@ function Navbar() {
               </Flex>
             </Link>
             <Link href={"/"}>
-              <Text {...css.links}>Bosh sahifa</Text>
+              <Text {...css.links}>Бош саҳифа</Text>
             </Link>
             <Link href={"/"}>
-              <Text {...css.links}>Xizmatlarimiz</Text>
+              <Text {...css.links}>Хизматларимиз</Text>
             </Link>
             <Link href={"/"}>
-              <Text {...css.links}>Bog`lanish</Text>
+              <Text {...css.links}>Боғланиш</Text>
             </Link>
           </Flex>
           <Button onClick={() => navigate.push(routeName)} {...css.button}>

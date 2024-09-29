@@ -18,7 +18,7 @@ function Courses() {
   return (
     <Box p={"35px 0"}>
       <Box className="container">
-        <Heading {...css.name}>Bizning kurslarimiz</Heading>
+        <Heading {...css.name}>Бизнинг курсларимиз</Heading>
         <SimpleGrid mt="48px" gap={"16px"} columns={{ base: 1, sm: 2, lg: 3 }}>
           {course?.length > 0 &&
             course?.map((item, index) => (

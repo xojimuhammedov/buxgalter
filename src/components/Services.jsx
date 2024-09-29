@@ -5,7 +5,8 @@ function Services() {
   return (
     <Box p={'35px 0'}>
       <Box className="container">
-        <Heading {...css.title}>Bizning Xizmatlarimiz</Heading>
+        <Heading {...css.title}>Бизнинг Хизматларимиз
+        </Heading>
         <SimpleGrid columns={{base:1, sm:2}} gap={'16px'}>
           <Box {...css.item}>
             <Text {...css.text}>

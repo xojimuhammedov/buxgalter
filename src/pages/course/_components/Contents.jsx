@@ -20,7 +20,7 @@ function Contents({ courseId }) {
 
   return (
     <Box p={'24px 0'}>
-      <Heading {...css.title}>Darslar ro`yhati</Heading>
+      <Heading {...css.title}>Дарслар рўйҳати</Heading>
       {isLoading ? (
         <Flex mt={'24px'} align={'center'} justifyContent={'center'}>
           <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
@@ -31,7 +31,7 @@ function Contents({ courseId }) {
             <Flex key={index} align={'center'} justifyContent={'space-between'}>
               <Heading {...css.name}>{item?.title}</Heading>
               <Link href={`/lesson/${item?.id}`} {...css.link}>
-                Batafsil
+              Батафсил
               </Link>
             </Flex>
           ))}

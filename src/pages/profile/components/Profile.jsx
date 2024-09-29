@@ -88,10 +88,10 @@ function ProfileAbout() {
               setImage(e.target.files[0]);
             }}
           />
-          <span style={{ color: '#14151A', fontWeight: '400' }}>Image Upload</span>
+          <span style={{ color: '#14151A', fontWeight: '400' }}>Расм юклаш</span>
         </label>
         <label className="profile-label" htmlFor="full_name">
-          F.I.O kiriting
+        F.I.O киритинг
         </label>
         <Input
           id="full_name"
@@ -99,10 +99,10 @@ function ProfileAbout() {
           {...css.input}
           type="name"
           autoComplete="off"
-          placeholder="Full Name"
+          placeholder="F.I.O киритинг"
         />
         <label className="profile-label" htmlFor="address">
-          Manzilingizni kiriting
+        Манзилингизни киритинг
         </label>
         <Input
           id="address"
@@ -110,25 +110,25 @@ function ProfileAbout() {
           {...register('address')}
           autoComplete="new-address"
           type="address"
-          placeholder="Address"
+          placeholder="Манзилингизни киритинг"
         />
         <label className="profile-label" htmlFor="phone_number">
-          Sizning raqamingiz
+        Сизнинг рақамингиз
         </label>
         <Input
           {...register('phone_number')}
           {...css.input}
           type="number"
           id="phone_number"
-          placeholder="Sizning raqamingiz"
+          placeholder="Сизнинг рақамингиз"
         />
         <Flex align={'center'} gap={{ base: '24px', md: '36px' }} mt={'20px'}>
           <Button {...css.button} type="submit">
-            Yangilash
+          Янгилаш
           </Button>
           <Flex onClick={removeClick} cursor={'pointer'} align={'center'} gap={'10px'}>
             <LogOut color="#fe5d37" />
-            <Text {...css.name}>Profildan chiqish</Text>
+            <Text {...css.name}>Профилдан чиқиш</Text>
           </Flex>
         </Flex>
       </form>
