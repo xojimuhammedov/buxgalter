@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import OneIcon from "@/assets/1.svg";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { API_URL } from "@/api";
 
 function Courses() {
   const navigate = useRouter();
@@ -28,7 +29,7 @@ function Courses() {
                 {...css.item}
               >
                 <Heading {...css.title}>{item?.name}</Heading>
-                <Image {...css.icon} src={OneIcon.src} alt="OneIcon" />
+                <Image {...css.icon} src={`${API_URL}/uploads/images/${item?.images[0]?.src}`} alt="OneIcon" />
               </Box>
             ))}
         </SimpleGrid>
@@ -63,6 +64,9 @@ const css = {
     position: "absolute",
     right: "16px",
     top: "48px",
+    width:"100px",
+    height:"115px",
+    objectFit:"contain"
   },
   name: {
     color: "#262626",

@@ -7,6 +7,7 @@ import OneIcon from '@/assets/1.svg';
 import Contents from '../_components/Contents';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { API_URL } from '@/api';
 
 function CourseAbout() {
   const router = useRouter().query;
@@ -54,7 +55,7 @@ function CourseAbout() {
             <Box className="container">
               <Flex {...css.box}>
                 <Heading {...css.name}>{course?.name}</Heading>
-                <Image src={OneIcon.src} alt="OneIcon" />
+                <Image {...css.icon} src={`${API_URL}/uploads/images/${course?.images[0]?.src}`} alt="OneIcon" />
               </Flex>
 
               <Box {...css.bottom}>
@@ -86,6 +87,11 @@ const css = {
     fontSize: '32px',
     lineHeight: '38px',
     fontFamily: 'Inter, sans-serif'
+  },
+  icon: {
+    width:"100px",
+    height:"115px",
+    objectFit:"contain"
   },
   box: {
     alignItems: 'center',
