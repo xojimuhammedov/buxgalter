@@ -32,10 +32,10 @@ function Navbar() {
             <Link href={"/"}>
               <Text {...css.links}>Бош саҳифа</Text>
             </Link>
-            <Link href={"/"}>
+            <Link href={"#service"}>
               <Text {...css.links}>Хизматларимиз</Text>
             </Link>
-            <Link href={"/"}>
+            <Link target="_blank" href={"https://t.me/buxgalterprouz"}>
               <Text {...css.links}>Боғланиш</Text>
             </Link>
           </Flex>

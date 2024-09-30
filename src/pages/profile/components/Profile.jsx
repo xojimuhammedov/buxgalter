@@ -13,6 +13,7 @@ function ProfileAbout() {
   const [image, setImage] = useState(null);
   const removeClick = () => {
     localStorage.removeItem('courseToken');
+    window.location.href = '/';
   };
 
   const { data, refetch } = useQuery('userMe', async () => {

@@ -173,3 +173,7 @@ a:hover {
 .courses-item:hover .courses-icon {
   opacity: 1 !important;
 }
+
+html {
+  scroll-behavior: smooth;
+}

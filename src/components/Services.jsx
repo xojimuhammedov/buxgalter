@@ -3,7 +3,7 @@ import React from 'react';
 
 function Services() {
   return (
-    <Box p={'35px 0'}>
+    <Box id='service' p={'35px 0'}>
       <Box className="container">
         <Heading {...css.title}>Бизнинг Хизматларимиз
         </Heading>

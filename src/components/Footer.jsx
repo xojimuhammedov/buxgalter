@@ -21,19 +21,6 @@ function Footer() {
           >
             © 2024 buxgalterPro. Барча ҳуқуқлар ҳимояланган.
           </Text>
-          <Flex align="center" gap={"4px"}>
-            <Text color={"rgba(13, 17, 38, 0.40)"} {...css.text}>
-              Яратувчи
-            </Text>
-            <Link
-              target="_blank"
-              color={"rgba(13, 17, 38, 0.40)"}
-              {...css.text}
-              href="https://t.me/Xojimuhammedov"
-            >
-              @Muhammadislom
-            </Link>
-          </Flex>
         </Flex>
       </Box>
     </Box>

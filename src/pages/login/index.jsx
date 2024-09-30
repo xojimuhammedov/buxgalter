@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
 import { Button, Heading, Input, Link } from '@chakra-ui/react';
-import BuxgalterProIcon from '@/assets/pro.svg';
+import BuxgalterProIcon from '@/assets/logo.svg';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
@@ -53,7 +53,6 @@ function LoginPage() {
           <div className="login-form">
             <Heading {...css.title}>Кириш</Heading>
             <Link href="/" {...css.link}>
-              <Heading {...css.name}>buxgalter</Heading>
               <Image src={BuxgalterProIcon} alt="BuxgalterProIcon" />
             </Link>
             <form onSubmit={handleSubmit(onSubmit)} action="">
@@ -128,7 +127,6 @@ const css = {
   link: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
     fontFamily: 'Inter, sans-serif',
     justifyContent: 'center',
 
