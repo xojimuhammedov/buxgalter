@@ -31,8 +31,8 @@ export default function Home() {
           <Navbar />
         </nav>
         <main className="main">
-          <Services />
           <Courses />
+          <Services />
         </main>
         <footer>
           <Footer />
