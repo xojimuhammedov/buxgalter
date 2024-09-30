@@ -1,6 +1,6 @@
 import { Box, Flex, Image, Link, Text, Heading } from "@chakra-ui/react";
 import React from "react";
-import BuxgalterProIcon from "@/assets/pro.png";
+import BuxgalterProIcon from "@/assets/logo.svg";
 
 function Footer() {
   return (
@@ -12,7 +12,6 @@ function Footer() {
           justifyContent={"space-between"}
         >
           <Link {...css.link}>
-            <Heading {...css.name}>buxgalter</Heading>
             <Image src={BuxgalterProIcon.src} alt="BuxgalterProIcon" />
           </Link>
           <Text

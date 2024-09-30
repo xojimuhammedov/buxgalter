@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import React from "react";
-import BuxgalterProIcon from "@/assets/pro.png";
+import BuxgalterProIcon from "@/assets/logo.svg";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useQuery } from "react-query";
@@ -26,7 +26,6 @@ function Navbar() {
           <Flex alignItems={"center"}>
             <Link href={"/"}>
               <Flex {...css.link}>
-                <Heading {...css.name}>buxgalter</Heading>
                 <Image src={BuxgalterProIcon.src} alt="BuxgalterProIcon" />
               </Flex>
             </Link>
@@ -54,7 +53,6 @@ export default Navbar;
 const css = {
   link: {
     alignItems: "center",
-    gap: "8px",
     fontFamily: "Inter, sans-serif",
 
     _hover: {
