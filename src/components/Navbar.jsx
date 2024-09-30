@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import React from "react";
-import BuxgalterProIcon from "@/assets/pro.svg";
+import BuxgalterProIcon from "@/assets/pro.png";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useQuery } from "react-query";
@@ -65,7 +65,6 @@ const css = {
     color: "#B0B0B0",
     fontSize: {
       base: "25px",
-      md: "30px",
     },
     lineHeight: "45px",
     fontFamily: "Inter, sans-serif",

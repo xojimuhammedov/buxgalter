@@ -1,6 +1,6 @@
 import { Box, Flex, Image, Link, Text, Heading } from "@chakra-ui/react";
 import React from "react";
-import BuxgalterProIcon from "@/assets/pro.svg";
+import BuxgalterProIcon from "@/assets/pro.png";
 
 function Footer() {
   return (
@@ -68,7 +68,7 @@ const css = {
   },
   name: {
     color: "#B0B0B0",
-    fontSize: "30px",
+    fontSize: "25px",
     lineHeight: "45px",
     fontFamily: "Inter, sans-serif",
   },
