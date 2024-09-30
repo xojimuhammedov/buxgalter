@@ -1,12 +1,13 @@
 import { Box, Image, Link, SimpleGrid, Heading, Text } from '@chakra-ui/react';
 import React from 'react';
-
+import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import { API } from '@/api';
 import { get } from 'lodash';
 import OneIcon from '@/assets/1.svg';
 
 function MyCourses() {
+  const navigate = useRouter();
   const { data } = useQuery('myCourses', async () => {
     return await API.myCourses().catch((err) => {
       console.log(err);
@@ -21,7 +22,7 @@ function MyCourses() {
             {item?.courses?.map((evt, index) => (
               <Box
                 key={index}
-                onClick={() => navigate.push(`/course/${evt?.course_id}`)}
+                onClick={() => navigate.push(`/course/${evt?.id}`)}
                 {...css.item}>
                 <Heading {...css.title}>{evt?.name}</Heading>
                 <Image {...css.icon} src={OneIcon.src} alt="OneIcon" />
@@ -49,9 +50,8 @@ const css = {
   item: {
     border: '1px solid #DDDDDD',
     borderRadius: '10px',
-    padding: '16px',
     position: 'relative',
-    height: '180px',
+    height: '190px',
     transition: 'all 0.3s',
     cursor: 'pointer',
 
