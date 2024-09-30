@@ -27,9 +27,15 @@ function Courses() {
                 key={index}
                 onClick={() => navigate.push(`/course/${item?.course_id}`)}
                 {...css.item}
+                className="courses-item"
               >
                 <Heading {...css.title}>{item?.name}</Heading>
-                <Image {...css.icon} src={`${API_URL}/uploads/images/${item?.images[0]?.src}`} alt="OneIcon" />
+                <Image
+                  className="courses-icon"
+                  {...css.icon}
+                  src={`${API_URL}/uploads/images/${item?.images[0]?.src}`}
+                  alt="OneIcon"
+                />
               </Box>
             ))}
         </SimpleGrid>
@@ -53,20 +59,15 @@ const css = {
     padding: "16px",
     position: "relative",
     height: "180px",
-    transition: "all 0.3s",
     cursor: "pointer",
-
-    _hover: {
-      border: "1px solid #D34D4D",
-    },
   },
   icon: {
     position: "absolute",
     right: "16px",
     top: "48px",
-    width:"100px",
-    height:"115px",
-    objectFit:"contain"
+    width: "100px",
+    height: "115px",
+    objectFit: "contain",
   },
   name: {
     color: "#262626",

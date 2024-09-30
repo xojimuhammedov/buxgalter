@@ -157,3 +157,19 @@ p {
 a:hover {
   text-decoration: none !important;
 }
+
+.courses-icon {
+  opacity: 0.2 !important;
+  transition: all 0.3s;
+}
+
+.courses-item {
+  transition: all 0.3s;
+}
+.courses-item:hover {
+  border: 1px solid #e78383;
+}
+
+.courses-item:hover .courses-icon {
+  opacity: 1 !important;
+}
