@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
-import { Box, Flex, Heading, Image, Spinner, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Image, Link, Spinner, Text } from '@chakra-ui/react';
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import OneIcon from '@/assets/1.svg';
@@ -75,6 +75,12 @@ function CourseAbout() {
                 />
               </Box>
               <Contents courseId={router?.id} />
+
+              <Flex justifyContent={'center'} mt={'24px'}>
+                <Link target="_blank" href="https://t.me/tj1890" {...css.link}>
+                  Сотиб олиш
+                </Link>
+              </Flex>
             </Box>
           )}
         </Box>
@@ -131,5 +137,30 @@ const css = {
     fontSize: '16px',
     lineHeight: '24px',
     fontFamily: 'Inter, sans-serif'
+  },
+  link: {
+    borderRadius: 'var(--radius-lg, 10px)',
+    background: '#14151A',
+    boxShadow: '0px 1px 2px 0px rgba(20, 21, 26, 0.05)',
+    fontSize: '16px',
+    lineHeight: '24px',
+    fontWeight: 400,
+    letterSpacing: '-0.07px',
+    color: '#fff',
+    padding: 'var(--spacing-6, 8px) var(--spacing-10, 16px)',
+    transition: '0.3s all ease-in-out',
+    border: '2px solid var(--border-action-focus-light, #14151A)',
+    cursor: 'pointer',
+    height: 'auto',
+    _hover: {
+      background: '#fff',
+      color: '#14151A',
+      border: '2px solid var(--border-action-focus-light, #B78AF0)'
+    },
+    _focus: {
+      border: '1px solid var(--border-action-focus-light, #B78AF0)',
+      background: '#14151A',
+      boxShadow: '0px 0px 0px 2px rgba(200, 178, 255, 0.50)'
+    }
   }
 };
