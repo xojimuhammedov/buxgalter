@@ -20,7 +20,7 @@ function Contents({ courseId }) {
 
   return (
     <Box p={'24px 0'}>
-      <Heading {...css.title}>Дарслар рўйҳати</Heading>
+      <Heading {...css.title}>Мундарижа</Heading>
       {isLoading ? (
         <Flex mt={'24px'} align={'center'} justifyContent={'center'}>
           <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />

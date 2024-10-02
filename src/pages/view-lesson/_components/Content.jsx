@@ -4,7 +4,6 @@ import React from 'react';
 function Contents({ course }) {
   return (
     <Box p={'24px 0'}>
-      <Heading {...css.title}>Мундарижа</Heading>
       <Box {...css.box}>
         <Heading
           {...css.name}
