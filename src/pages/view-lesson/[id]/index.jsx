@@ -27,6 +27,8 @@ function CourseAbout() {
         setIsLoading(false);
       });
   }, [router?.id]);
+
+  console.log(course);
   return (
     <>
       <Head>
@@ -68,7 +70,9 @@ function CourseAbout() {
                   }}
                 />
               </Box>
-              {course.file ?? (
+              {course?.file === null ? (
+                ''
+              ) : (
                 <Link
                   {...css.link}
                   href={`${API_URL}/uploads/images/${course?.file}`}
