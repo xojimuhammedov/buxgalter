@@ -59,7 +59,11 @@ function CourseAbout() {
             <Box className="container">
               <Flex {...css.box}>
                 <Heading {...css.name}>{course?.title}</Heading>
-                <Image src={`${API_URL}/uploads/images/${course?.image_src}`} alt="OneIcon" />
+                <Image
+                  {...css.image}
+                  src={`${API_URL}/uploads/images/${course?.image_src}`}
+                  alt="OneIcon"
+                />
               </Flex>
               <Contents course={course} />
               <Box {...css.bottom}>
@@ -157,5 +161,10 @@ const css = {
       background: '#14151A',
       boxShadow: '0px 0px 0px 2px rgba(200, 178, 255, 0.50)'
     }
+  },
+  image: {
+    width: '130px',
+    height: '130px',
+    objectFit: 'contain'
   }
 };
