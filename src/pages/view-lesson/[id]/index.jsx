@@ -68,12 +68,14 @@ function CourseAbout() {
                   }}
                 />
               </Box>
-              <Link
-                {...css.link}
-                href={`${API_URL}/uploads/images/${course?.file}`}
-                target="_blank">
-                Дарсни юклаб олиш
-              </Link>
+              {course.file ?? (
+                <Link
+                  {...css.link}
+                  href={`${API_URL}/uploads/images/${course?.file}`}
+                  target="_blank">
+                  Дарсни юклаб олиш
+                </Link>
+              )}
             </Box>
           )}
         </Box>
