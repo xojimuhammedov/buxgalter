@@ -30,7 +30,7 @@ function Contents({ courseId }) {
           {lesson?.map((item, index) => (
             <Flex key={index} align={'center'} justifyContent={'space-between'}>
               <Heading {...css.name}>{item?.title}</Heading>
-              <Link href={`/lesson/${item?.id}`} {...css.link}>
+              <Link href={`/view-lesson/${item?.id}`} {...css.link}>
               Батафсил
               </Link>
             </Flex>

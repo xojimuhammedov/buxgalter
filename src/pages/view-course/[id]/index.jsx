@@ -2,9 +2,9 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { Box, Flex, Heading, Image, Link, Spinner, Text } from '@chakra-ui/react';
 import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import OneIcon from '@/assets/1.svg';
-import Contents from '../_components/Content';
+import Contents from '../_components/Contents';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { API_URL } from '@/api';
@@ -16,10 +16,10 @@ function CourseAbout() {
 
   useEffect(() => {
     axios
-      .get('https://api.buxgalterpro.uz/api/lessons')
-      .then((response) => {
-        setCourse(response?.data?.data?.find((item) => item?.id === router?.id));
-      })
+      .get('https://api.buxgalterpro.uz/api/courses/main')
+      .then((response) =>
+        setCourse(response?.data?.data?.find((item) => item?.course_id === router?.id))
+      )
       .catch((err) => {
         console.log(err);
       })
@@ -27,6 +27,7 @@ function CourseAbout() {
         setIsLoading(false);
       });
   }, [router?.id]);
+
   return (
     <>
       <Head>
@@ -34,7 +35,7 @@ function CourseAbout() {
           Ўзбекистонда бухгалтерия ҳисоби ва солиқлар бўйича батафсил дарслар, материаллар ва
           инструментлар. Бухгалтерия ҳисоби ва солиқ солиш бўйича тавсиялар | BuxgalterPRO.uz
         </title>
-        <meta name="description" content={course?.title} />
+        <meta name="description" content={course?.name} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -42,7 +43,7 @@ function CourseAbout() {
         <Navbar />
       </nav>
       <main className="main">
-        <Box p={'24px 0'}>
+        <Box p={'36px 0'}>
           {isLoading ? (
             <Flex mt={'24px'} align={'center'} justifyContent={'center'}>
               <Spinner
@@ -56,18 +57,30 @@ function CourseAbout() {
           ) : (
             <Box className="container">
               <Flex {...css.box}>
-                <Heading {...css.name}>{course?.title}</Heading>
-                {/* <Image src={`${API_URL}/uploads/images/${course?.images[0]?.src}`} alt="OneIcon" /> */}
+                <Heading {...css.name}>{course?.name}</Heading>
+                <Image
+                  {...css.icon}
+                  src={`${API_URL}/uploads/images/${course?.images[0]?.src}`}
+                  alt="OneIcon"
+                />
               </Flex>
-              <Contents course={course} />
+
               <Box {...css.bottom}>
+                <Heading {...css.title}>{course?.name}</Heading>
                 <Text
                   {...css.text}
                   dangerouslySetInnerHTML={{
-                    __html: course?.body
+                    __html: course?.description
                   }}
                 />
               </Box>
+              <Contents courseId={router?.id} />
+
+              <Flex justifyContent={'center'} mt={'24px'}>
+                <Link target="_blank" href="https://t.me/tj1890" {...css.link}>
+                  Сотиб олиш
+                </Link>
+              </Flex>
             </Box>
           )}
         </Box>
@@ -87,6 +100,11 @@ const css = {
     fontSize: '32px',
     lineHeight: '38px',
     fontFamily: 'Inter, sans-serif'
+  },
+  icon: {
+    width: '100px',
+    height: '115px',
+    objectFit: 'contain'
   },
   box: {
     alignItems: 'center',

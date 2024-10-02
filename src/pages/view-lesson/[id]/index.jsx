@@ -57,7 +57,7 @@ function CourseAbout() {
             <Box className="container">
               <Flex {...css.box}>
                 <Heading {...css.name}>{course?.title}</Heading>
-                {/* <Image src={`${API_URL}/uploads/images/${course?.images[0]?.src}`} alt="OneIcon" /> */}
+                <Image src={`${API_URL}/uploads/images/${course?.image_src}`} alt="OneIcon" />
               </Flex>
               <Contents course={course} />
               <Box {...css.bottom}>
@@ -68,6 +68,12 @@ function CourseAbout() {
                   }}
                 />
               </Box>
+              <Link
+                {...css.link}
+                href={`${API_URL}/uploads/images/${course?.file}`}
+                target="_blank">
+                Дарсни юклаб олиш
+              </Link>
             </Box>
           )}
         </Box>
@@ -105,7 +111,8 @@ const css = {
     background: '#fff',
     padding: '24px',
     borderRadius: '16px',
-    marginTop: '24px'
+    marginTop: '24px',
+    marginBottom: '36px'
   },
   title: {
     color: '#262626',

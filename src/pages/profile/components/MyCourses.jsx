@@ -22,7 +22,7 @@ function MyCourses() {
             {item?.courses?.map((evt, index) => (
               <Box
                 key={index}
-                onClick={() => navigate.push(`/course/${evt?.id}`)}
+                onClick={() => navigate.push(`/view-course/${evt?.id}`)}
                 {...css.item}>
                 <Heading {...css.title}>{evt?.name}</Heading>
                 <Image {...css.icon} src={OneIcon.src} alt="OneIcon" />
