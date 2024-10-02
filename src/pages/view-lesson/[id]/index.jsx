@@ -81,7 +81,7 @@ function CourseAbout() {
                   {...css.link}
                   href={`${API_URL}/uploads/images/${course?.file}`}
                   target="_blank">
-                  Дарсни юклаб олиш
+                  Дарсни очиш/ўқиш
                 </Link>
               )}
             </Box>
