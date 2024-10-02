@@ -75,12 +75,6 @@ function CourseAbout() {
                 />
               </Box>
               <Contents courseId={router?.id} />
-
-              <Flex justifyContent={'center'} mt={'24px'}>
-                <Link target="_blank" href="https://t.me/tj1890" {...css.link}>
-                  Сотиб олиш
-                </Link>
-              </Flex>
             </Box>
           )}
         </Box>
