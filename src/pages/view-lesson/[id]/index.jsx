@@ -10,6 +10,7 @@ import axios from 'axios';
 import { API, API_URL } from '@/api';
 import { useQuery } from 'react-query';
 import { get } from 'lodash';
+import PageNotFound from '@/pages/404';
 
 function CourseAbout() {
   const router = useRouter();
@@ -35,16 +36,6 @@ function CourseAbout() {
       console.log(err);
     });
   });
-  const getHomeRoute = () => {
-    if (!data?.data?.success) return '/404';
-  };
-
-  useEffect(() => {
-    if (!data?.data?.success) {
-      router.replace(getHomeRoute);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
@@ -57,61 +48,63 @@ function CourseAbout() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <nav>
-        <Navbar />
-      </nav>
-      <main className="main">
-        {get(data, 'data.success') ? (
-          <Box p={'24px 0'}>
-            {isLoading ? (
-              <Flex mt={'24px'} align={'center'} justifyContent={'center'}>
-                <Spinner
-                  thickness="4px"
-                  speed="0.65s"
-                  emptyColor="gray.200"
-                  color="blue.500"
-                  size="xl"
-                />
-              </Flex>
-            ) : (
-              <Box className="container">
-                <Flex {...css.box}>
-                  <Heading {...css.name}>{course?.title}</Heading>
-                  <Image
-                    {...css.image}
-                    src={`${API_URL}/uploads/images/${course?.image_src}`}
-                    alt="OneIcon"
+      {get(data, 'data.success') ? (
+        <>
+          <nav>
+            <Navbar />
+          </nav>
+          <main className="main">
+            <Box p={'24px 0'}>
+              {isLoading ? (
+                <Flex mt={'24px'} align={'center'} justifyContent={'center'}>
+                  <Spinner
+                    thickness="4px"
+                    speed="0.65s"
+                    emptyColor="gray.200"
+                    color="blue.500"
+                    size="xl"
                   />
                 </Flex>
-                <Contents course={course} />
-                <Box {...css.bottom}>
-                  <Text
-                    {...css.text}
-                    dangerouslySetInnerHTML={{
-                      __html: course?.body
-                    }}
-                  />
+              ) : (
+                <Box className="container">
+                  <Flex {...css.box}>
+                    <Heading {...css.name}>{course?.title}</Heading>
+                    <Image
+                      {...css.image}
+                      src={`${API_URL}/uploads/images/${course?.image_src}`}
+                      alt="OneIcon"
+                    />
+                  </Flex>
+                  <Contents course={course} />
+                  <Box {...css.bottom}>
+                    <Text
+                      {...css.text}
+                      dangerouslySetInnerHTML={{
+                        __html: course?.body
+                      }}
+                    />
+                  </Box>
+                  {course?.file === null ? (
+                    ''
+                  ) : (
+                    <Link
+                      {...css.link}
+                      href={`${API_URL}/uploads/images/${course?.file}`}
+                      target="_blank">
+                      Дарсни очиш/ўқиш
+                    </Link>
+                  )}
                 </Box>
-                {course?.file === null ? (
-                  ''
-                ) : (
-                  <Link
-                    {...css.link}
-                    href={`${API_URL}/uploads/images/${course?.file}`}
-                    target="_blank">
-                    Дарсни очиш/ўқиш
-                  </Link>
-                )}
-              </Box>
-            )}
-          </Box>
-        ) : (
-          ''
-        )}
-      </main>
-      <footer>
-        <Footer />
-      </footer>
+              )}
+            </Box>
+          </main>
+          <footer>
+            <Footer />
+          </footer>
+        </>
+      ) : (
+        <PageNotFound />
+      )}
     </>
   );
 }
