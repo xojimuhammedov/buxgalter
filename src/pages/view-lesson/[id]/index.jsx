@@ -7,10 +7,12 @@ import OneIcon from '@/assets/1.svg';
 import Contents from '../_components/Content';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { API_URL } from '@/api';
+import { API, API_URL } from '@/api';
+import { useQuery } from 'react-query';
+import { get } from 'lodash';
 
 function CourseAbout() {
-  const router = useRouter().query;
+  const router = useRouter();
   const [course, setCourse] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,7 +20,7 @@ function CourseAbout() {
     axios
       .get('https://api.buxgalterpro.uz/api/lessons')
       .then((response) => {
-        setCourse(response?.data?.data?.find((item) => item?.id === router?.id));
+        setCourse(response?.data?.data?.find((item) => item?.id === router?.query?.id));
       })
       .catch((err) => {
         console.log(err);
@@ -26,9 +28,26 @@ function CourseAbout() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [router?.id]);
+  }, [router?.query?.id]);
 
-  console.log(course);
+  const { data } = useQuery('userMe', async () => {
+    return await API.userMe().catch((err) => {
+      console.log(err);
+    });
+  });
+  const getHomeRoute = () => {
+    if (!data?.data?.success) return '/';
+  };
+
+  useEffect(() => {
+    if (data?.data?.data?.full_name) {
+      const homeRoute = getHomeRoute(auth.user.role?.name);
+
+      router.replace(homeRoute);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Head>
@@ -44,49 +63,53 @@ function CourseAbout() {
         <Navbar />
       </nav>
       <main className="main">
-        <Box p={'24px 0'}>
-          {isLoading ? (
-            <Flex mt={'24px'} align={'center'} justifyContent={'center'}>
-              <Spinner
-                thickness="4px"
-                speed="0.65s"
-                emptyColor="gray.200"
-                color="blue.500"
-                size="xl"
-              />
-            </Flex>
-          ) : (
-            <Box className="container">
-              <Flex {...css.box}>
-                <Heading {...css.name}>{course?.title}</Heading>
-                <Image
-                  {...css.image}
-                  src={`${API_URL}/uploads/images/${course?.image_src}`}
-                  alt="OneIcon"
+        {get(data, 'data.success') ? (
+          <Box p={'24px 0'}>
+            {isLoading ? (
+              <Flex mt={'24px'} align={'center'} justifyContent={'center'}>
+                <Spinner
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="blue.500"
+                  size="xl"
                 />
               </Flex>
-              <Contents course={course} />
-              <Box {...css.bottom}>
-                <Text
-                  {...css.text}
-                  dangerouslySetInnerHTML={{
-                    __html: course?.body
-                  }}
-                />
+            ) : (
+              <Box className="container">
+                <Flex {...css.box}>
+                  <Heading {...css.name}>{course?.title}</Heading>
+                  <Image
+                    {...css.image}
+                    src={`${API_URL}/uploads/images/${course?.image_src}`}
+                    alt="OneIcon"
+                  />
+                </Flex>
+                <Contents course={course} />
+                <Box {...css.bottom}>
+                  <Text
+                    {...css.text}
+                    dangerouslySetInnerHTML={{
+                      __html: course?.body
+                    }}
+                  />
+                </Box>
+                {course?.file === null ? (
+                  ''
+                ) : (
+                  <Link
+                    {...css.link}
+                    href={`${API_URL}/uploads/images/${course?.file}`}
+                    target="_blank">
+                    Дарсни очиш/ўқиш
+                  </Link>
+                )}
               </Box>
-              {course?.file === null ? (
-                ''
-              ) : (
-                <Link
-                  {...css.link}
-                  href={`${API_URL}/uploads/images/${course?.file}`}
-                  target="_blank">
-                  Дарсни очиш/ўқиш
-                </Link>
-              )}
-            </Box>
-          )}
-        </Box>
+            )}
+          </Box>
+        ) : (
+          ''
+        )}
       </main>
       <footer>
         <Footer />
