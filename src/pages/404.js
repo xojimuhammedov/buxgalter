@@ -23,7 +23,7 @@ export default function PageNotFound() {
               alt="404"
             />
             <Heading {...css.title}>404</Heading>
-            <Text {...css.text}> The page you are looking for does not exist.</Text>
+            <Text {...css.text}> Бундай саҳифа мавжуд эмас, илтимос логин қилиб киринг..</Text>
           </Flex>
         </Box>
       </Box>
