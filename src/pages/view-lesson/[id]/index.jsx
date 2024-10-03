@@ -36,14 +36,12 @@ function CourseAbout() {
     });
   });
   const getHomeRoute = () => {
-    if (!data?.data?.success) return '/';
+    if (!data?.data?.success) return '/404';
   };
 
   useEffect(() => {
-    if (data?.data?.data?.full_name) {
-      const homeRoute = getHomeRoute(auth.user.role?.name);
-
-      router.replace(homeRoute);
+    if (!data?.data?.success) {
+      router.replace(getHomeRoute);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
