@@ -31,7 +31,7 @@ function Profile() {
           <Tabs>
             <TabList>
               <Tab>Профиле</Tab>
-              <Tab>Курслар</Tab>
+              <Tab>Сотиб олинган курслар</Tab>
             </TabList>
             <TabPanels>
               <TabPanel p={'0'}>

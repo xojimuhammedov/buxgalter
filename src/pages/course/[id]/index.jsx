@@ -140,8 +140,8 @@ const css = {
   },
   link: {
     borderRadius: 'var(--radius-lg, 10px)',
-    background: '#14151A',
-    boxShadow: '0px 1px 2px 0px rgba(20, 21, 26, 0.05)',
+    background: '#1ab584',
+    // boxShadow: '0px 1px 2px 0px rgba(20, 21, 26, 0.05)',
     fontSize: '16px',
     lineHeight: '24px',
     fontWeight: 400,
@@ -149,18 +149,13 @@ const css = {
     color: '#fff',
     padding: 'var(--spacing-6, 8px) var(--spacing-10, 16px)',
     transition: '0.3s all ease-in-out',
-    border: '2px solid var(--border-action-focus-light, #14151A)',
+    border: '2px solid var(--border-action-focus-light, #1ab584)',
     cursor: 'pointer',
     height: 'auto',
     _hover: {
       background: '#fff',
       color: '#14151A',
-      border: '2px solid var(--border-action-focus-light, #B78AF0)'
+      border: '2px solid var(--border-action-focus-light, #1ab584)'
     },
-    _focus: {
-      border: '1px solid var(--border-action-focus-light, #B78AF0)',
-      background: '#14151A',
-      boxShadow: '0px 0px 0px 2px rgba(200, 178, 255, 0.50)'
-    }
   }
 };
