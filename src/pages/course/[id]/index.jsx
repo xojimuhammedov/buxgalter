@@ -76,7 +76,8 @@ function CourseAbout() {
               </Box>
               <Contents courseId={router?.id} />
 
-              <Flex justifyContent={'center'} mt={'24px'}>
+              <Flex alignItems={'center'} justifyContent={'space-between'} mt={'24px'}>
+              <Heading {...css.price}>Нархи: {course?.price ?? ""}сўм</Heading>
                 <Link target="_blank" href="https://t.me/tj1890" {...css.link}>
                   Сотиб олиш
                 </Link>
@@ -131,6 +132,12 @@ const css = {
     lineHeight: '38px',
     fontFamily: 'Inter, sans-serif',
     marginBottom: '16px'
+  },
+  price: {
+    color: '#262626',
+    fontSize: '25px',
+    lineHeight: '38px',
+    fontFamily: 'Inter, sans-serif',
   },
   text: {
     color: '#74787c',
