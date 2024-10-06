@@ -30,15 +30,15 @@ function Profile() {
         <Box className="container">
           <Tabs>
             <TabList>
-              <Tab>Профиле</Tab>
               <Tab>Сотиб олинган курслар</Tab>
+              <Tab>Профиле</Tab>
             </TabList>
             <TabPanels>
               <TabPanel p={'0'}>
-                <ProfileAbout />
+                <MyCourses />
               </TabPanel>
               <TabPanel p={'0'}>
-                <MyCourses />
+                <ProfileAbout />
               </TabPanel>
             </TabPanels>
           </Tabs>
