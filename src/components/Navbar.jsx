@@ -17,7 +17,7 @@ function Navbar() {
   });
 
   const routeName = get(data, "data.success") ? "/profile" : "/login";
-  const subName = get(data, "data.success") ? "Профиле" : "Логин";
+  const subName = get(data, "data.success") ? "Профилъ" : "Логин";
 
   return (
     <Box p={"8px 0"}>
